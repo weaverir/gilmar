@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f7fafc;
+  --foreground: #17202a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-abar), sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  user-select: none;
+}
+
+::selection {
+  background: #35cfa1;
+  color: white;
+}
+
+/* ========================================
+   HERO AREA
+   Navbar + Hero
+   ======================================== */
+
+.hero-area {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(200, 225, 255, 0.8) 0%,
+      rgba(200, 225, 255, 0.35) 25%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 88% 5%,
+      rgba(225, 210, 255, 0.75) 0%,
+      rgba(225, 210, 255, 0.3) 25%,
+      transparent 45%
+    ),
+    var(--background);
+}
+
+/* ========================================
+   HERO GRID
+   ======================================== */
+
+.hero-area::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.45) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.45) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  pointer-events: none;
+  z-index: 0;
+
+  
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
+}
+
+/* ========================================
+   COMMON
+   ======================================== */
+
+section {
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================================
+   MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .hero-area {
+    background:
+      radial-gradient(
+        circle at 0% 5%,
+        rgba(200, 225, 255, 0.7) 0%,
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 100% 5%,
+        rgba(225, 210, 255, 0.65) 0%,
+        transparent 45%
+      ),
+      var(--background);
+  }
+
+  .hero-area::before {
+    background-size: 36px 36px;
+  }
+}
+.hero-area {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(190, 225, 255, 0.9) 0%,
+      rgba(190, 225, 255, 0.45) 25%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(225, 210, 255, 0.9) 0%,
+      rgba(225, 210, 255, 0.4) 25%,
+      transparent 50%
+    ),
+    #f7fafc;
+}
+.footer-area::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.45) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.45) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  pointer-events: none;
+  z-index: 0;
+
+  mask-image: linear-gradient(
+    to top,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    black 0%,
+    black 45%,
+    rgba(0, 0, 0, 0.7) 65%,
+    transparent 100%
+  );
 }
